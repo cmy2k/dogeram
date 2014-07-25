@@ -1,10 +1,17 @@
 {
-    "manifest_version": 2,
-    "name": "dogeram",
-    "description": "Handy USD -> DOGE for Dodge Ram's site!!!1",
-    "version": "0.0.0.1",
-    "browser_action": {
-	"default_icon": "icon.png",
-	"default_popup": "dogeram.html"
+  "manifest_version": 2,
+  "name": "dogeram",
+  "description": "Handy USD -> DOGE for Dodge Ram's site!!!1",
+  "version": "0.0.0.1",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "dogeram.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["dogeram.js"],
+      "run_at": "document_end"
     }
+  ]
 }

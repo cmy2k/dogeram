@@ -31,20 +31,23 @@ function handleText(textNode)
 {
   var v = textNode.nodeValue;
 
-  var match = v.match(/(\s)\$([0-9,.]*)(\s)/);
-  var value = match[2];
+  var match = v.match(/(\s)?\$([0-9,.]*)(\s)?/);
+  if (match !== null) {
+    var value = match[2];
+    console.log('matched', match);
 
-  if (value) {
-    var dollars = parseFloat(value.replace(/,/g, ''));
-    if (!dollars) {
-      dollars = 0;
+    if (value) {
+      var dollars = parseFloat(value.replace(/,/g, ''));
+      if (!dollars) {
+        dollars = 0;
+      }
+      console.log(dollars);
+      var doge = dollars * 2270;
+      v = v.replace('$' + value, 'doge' + doge);
     }
-    console.log(dollars);
-    var doge = dollars * 2270;
-    v = v.replace('$' + value, 'doge' + doge);
+    
+    textNode.nodeValue = v;
   }
-	
-  textNode.nodeValue = v;
 }
 
 
